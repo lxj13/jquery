@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>展开和收起</title>
+	<style>
+		body{
+			background-color: #ccc;
+		}
+		ul{
+			float:left;
+		}
+		a{
+			text-decoration: none;
+			color:#000;
+		}
+		li{
+			list-style: none;
+			width:160px;
+			height:30px;
+			line-height: 30px;
+			font-family: "微软雅黑";
+		}
+		.wrap{
+			width:1100px;
+			margin:100px auto;
+			background-color:#fff;
+			overflow: hidden;
+		}
+		.retract{
+			display: inline-block;
+			margin:20px 0 0 40px;
+			color:#ccc111;
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul>
+			<li class="main-nav"><a href="#">手机</a></li>
+			<li><a href="#">影音视听</a></li>
+			<li><a href="#">大家电</a></li>
+			<li><a href="#">电脑硬件</a></li>
+			<li><a href="#">家装主材</a></li>
+			<li><a href="#">汽车内外饰品</a></li>
+		</ul>
+
+		<ul>
+			<li class="main-nav"><a href="#">智能设备</a></li>
+			<li><a href="#">3C数码配件</a></li>
+			<li><a href="#">厨房电器</a></li>
+			<li><a href="#">车载电子/影音</a></li>
+			<li><a href="#">电玩游戏</a></li>
+			<li><a href="#">相机/摄影机</a></li>
+		</ul>
+
+		<ul>
+			<li class="main-nav"><a href="#">平板电视</a></li>
+			<li><a href="#">网络设备</a></li>
+			<li><a href="#">笔记本</a></li>
+			<li><a href="#">玩具/模型/动漫/早...</a></li>
+			<li><a href="#">精品男装</a></li>
+		</ul>
+
+		<ul>
+			<li class="main-nav"><a href="#">空气净化/氧吧</a></li>
+			<li><a href="#">手机号/3G/宽带/套...</a></li>
+			<li><a href="#">电子/电工</a></li>
+			<li><a href="#">烧水壶/电热水壶</a></li>
+			<li><a href="#">T恤</a></li></a>
+		</ul>
+
+		<ul>
+			<li class="main-nav"><a href="#">平板电脑/MID</a></li>
+			<li><a href="#">生活电器</a></li>
+			<li><a href="#">品牌箱包</a></li>
+			<li><a href="#">行车记录仪</a></li>
+			<li><a href="#">电子词典/电纸书/文...</a></li>
+		</ul>
+
+		<span class="retract">收起</span>
+	</div>
+
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		var onoff = true;
+		$('.retract').click(function(){
+			$('.main-nav').siblings().slideToggle();
+			if(onoff){
+				$(this).html('更多');
+				onoff = false;
+			}else{
+				$(this).html('收起');
+				onoff = true;
+			}
+		})
+	})
+
+
+	</script>
+</body>
+</html>

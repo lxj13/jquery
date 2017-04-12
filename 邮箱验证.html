@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>邮箱验证</title>
+	<style>
+		p{
+			padding:0;
+			margin:0;
+		}
+		.box{
+			width:400px;
+			margin:0 auto;
+		}
+		.box h3{
+			text-align:center;
+		}
+		.box input{
+			width:300px;
+			height:30px;
+			margin-left:100px;
+			text-indent:10px;
+			margin-top:10px;
+		}
+		.box p{
+			width:300px;
+			margin-left:100px;
+			text-indent: 10px;
+			height:20px;
+			line-height: 20px;
+			color:orange;
+			font-family: "宋体";
+			font-size: 14px;
+		}
+		#btn{
+			width:60px;
+			height:30px;
+			text-align:center;
+			line-height:30px;
+			margin-left:180px;
+		}
+	</style>
+</head>
+<body>	
+	<div class="box">
+		<h3>邮箱验证</h3>
+		<input type="text" placeholder="请输入邮箱"  id ="email">
+		<p id='eTip'></p>
+		<input type="password" placeholder="请输入密码" id="password">
+		<p id='pTip'></p>
+		<input type="text" placeholder="请输入姓名" id="name">
+		<p id='nTip'></p>
+
+		<button id="btn">提交</button>
+	</div>
+
+
+<script>
+window.onload = function(){
+	var email = document.getElementById('email');
+	var password = document.getElementById('password');
+	var btn = document.getElementById('btn');
+	var eTip = document.getElementById('eTip');
+	var pTip = document.getElementById('pTip');
+	var name = document.getElementById('name');
+	var nTip = document.getElementById('nTip');
+
+	//验证邮箱
+	function isEmail(str){
+		var reg =/\w+((-w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+/;
+		return reg.test(str);
+	}
+
+	//验证密码
+	function isPasswd(s){
+		var patrn=/^(\w){6,20}$/;
+		if (!patrn.exec(s)){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+
+	function isTrueName(s){
+		var patrn=/^[a-zA-Z]{1,30}$/;
+		if (!patrn.exec(s)){
+			return false;
+		}else{
+			return true;
+		}
+
+	 }
+
+
+	btn.onclick = function(){
+		//邮箱
+		eTip.innerHTML = '';
+		var eText = email.value;
+		if( ! isEmail(eText)){
+			eTip.innerHTML = '格式不正确';
+		}
+
+		//密码
+		pTip.innerHTML = '';
+		var pText = password.value;
+		if( ! isPasswd(pText)){
+			pTip.innerHTML = '请输入6-20个字母、数字、下划线 ';
+		}
+
+		//验证姓名
+		nTip.innerHTML = '';
+		var nText = name.value;
+		if( ! isTrueName(nText)){
+			nTip.innerHTML = '请输入1-30个以字母开头的字符串';
+		}
+
+	}
+
+
+}
+</script>
+</body>
+</html>
