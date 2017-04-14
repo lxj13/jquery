@@ -93,22 +93,30 @@ window.onload = function(){
 	 }
 
 
-	btn.onclick = function(){
+	
 		//邮箱
+	email.onblur = function(){
 		eTip.innerHTML = '';
-		var eText = email.value;
+		var eText = this.value;
 		if( ! isEmail(eText)){
 			eTip.innerHTML = '格式不正确';
 		}
+	}
+	
 
 		//密码
+	password.onblur = function(){
 		pTip.innerHTML = '';
 		var pText = password.value;
 		if( ! isPasswd(pText)){
 			pTip.innerHTML = '请输入6-20个字母、数字、下划线 ';
 		}
 
+	}
+		
+
 		//验证姓名
+	name.onblur =  function(){
 		nTip.innerHTML = '';
 		var nText = name.value;
 		if( ! isTrueName(nText)){
@@ -116,6 +124,9 @@ window.onload = function(){
 		}
 
 	}
+		
+
+	
 
 
 }
