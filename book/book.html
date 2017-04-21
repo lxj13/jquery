@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>小王子</title>
+	<style>
+		html,body,div,h2{
+			padding:0;
+			margin:0;
+		}
+		body{
+			background-color: #aaaaaa;
+		}
+		.wrap{
+			width:400px;			
+			margin:0 auto;			
+			overflow: hidden;
+			position:relative;
+			background-color:#fff;
+		}
+		.wrap h2{
+			margin:10px 0 0 10px;
+		}	
+		.wrap .rating{
+			color:orange;
+			margin:20px 0 0 20px;				
+			font-weight: bolder;		
+		}
+		.wrap .pl{
+			color:#b4b1aa;
+			margin-left:30px;
+		}
+		.wrap .info{
+			width:250px;
+			font-family: "黑体";
+			color:#494949;
+			font-size: 14px;
+			margin-left:10px;
+			float:left;
+		}
+		.wrap .imag{
+			float:right;
+			margin-right:20px;
+		}
+		.wrap .btn{
+			display:inline-block;
+			width:120px;
+			height:30px;
+			text-align:center;
+			line-height:30px;
+			color:#ffb712;
+			border:2px solid #ffb712;
+			border-radius: 8px;
+			position:absolute;	
+			font-family:"微软雅黑";		
+			top:220px;
+		}
+		.wrap .btn:nth-child(1){
+			left:10px;
+		}
+		.wrap .btn:nth-child(2){
+			left:140px;
+		}
+		.wrap .btn:nth-child(3){
+			left:270px;
+		}
+		.wrap .jj{
+			margin-top:220px;
+			font-size: 14px;
+			color:#aaaab1;
+			margin-left:10px;
+		}
+		.wrap .summary{
+			height:108px;
+			color:#494949;
+			margin-left:10px;
+			overflow: hidden;			
+			/*text-overflow:ellipsis;
+			overflow:hidden;
+			white-space:nowrap;*/
+		}
+		.wrap .more{
+			margin:20px 0 0 10px;
+			color:#aaaaaa;
+		}
+		.wrap .link{
+			display: inline-block;
+			padding:8px 20px;
+			margin:6px;
+			border-radius:10px;
+			background-color: #f5f5f5;
+			font-size: 14px;
+			color:#494949;
+			text-decoration: none;			
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<span class="btn">想读</span>
+		<span class="btn">在读</span>
+		<span class="btn">读过</span>
+	</div>
+
+
+	<script src='js/jquery-1.8.3.min.js'></script>
+	<script>
+	$(document).ready(function(){
+		var str = '';
+		var tagStr = '';
+		var t = new Date().getTime();
+		$.ajax({
+			type:'GET',
+			url:'json-book.js?'+t,
+			dataType:'json',
+			success:function(data){
+				console.log(data);
+				str+='<h2>'+data.title+'</h2>'+
+					'<span class="rating">'+data.rating.average+'</span>'+
+					'<span class="pl">'+data.rating.numRaters+'人评论</span>'+
+					'<p class="info">'+data.author+'/'+data.translator+'/'+data.publisher+'/'+data.pages+'/'+data.binding+'/'+data.price+'/'+data.pubdate+'</p>'+
+					'<img class="imag" src="images/xwz-medium.jpg">'+
+					'<p class="jj">'+data.title+'的内容简介</p>'+
+					'<p class="summary">'+data.summary+'</p>'+
+					'<p class="more">查看更多豆瓣高分好书</p>';
+				var tag = data.tags;
+				for (var i = 0; i < tag.length; i++) {
+					tagStr+='<a href="#" class="link">'+tag[i].name+'</a>';
+				}
+				str+=tagStr;
+				$('.wrap').append(str);
+			}
+		});
+
+	})
+	</script>	
+</body>
+</html>
